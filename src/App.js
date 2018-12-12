@@ -1,26 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import { Layout } from 'antd';
 import './App.css';
+import NaviBar from './layouts/naviBar';
+import SideData from './layouts/sideData';
+import LayoutMenu from './layouts/layoutMenu';
+import BodyData from './layouts/bodyData';
 
 class App extends Component {
+  state = {
+    collapsed: false,
+    apiData: []
+  }
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
-      </div>
+    <Layout>
+      <NaviBar />
+    <Layout>
+      <SideData />
+      <Layout style={{ padding: '0 24px 24px' }}>
+        <LayoutMenu />
+        <BodyData />
+      </Layout>
+    </Layout>
+  </Layout>
     );
   }
 }
